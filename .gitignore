@@ -1,0 +1,35 @@
+# Sensitive Information
+*.key
+*.pem
+*.crt
+*.pfx
+*.jks
+*.password
+*.secrets
+vars/vault.yml
+
+# Temporary Files
+*.retry
+*.pyc
+*.log
+__pycache__/
+*.swp
+*.swo
+.vagrant/
+.terraform/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# Editor/IDE Specific
+.idea/
+.vscode/
+*.bak
+
+# Ansible Specific
+inventory/*
+group_vars/*
+host_vars/*
+roles/*/files/*largefile*
+roles/*/templates/*.j2c
