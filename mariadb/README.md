@@ -1,38 +1,42 @@
-Role Name
-=========
+# Role Name
 
-A brief description of the role goes here.
+This Ansible role installs, configures, and secures a MariaDB database server. It sets up the root user with a password, disables insecure defaults (e.g., anonymous users, remote root login), and allows the creation of application-specific databases and users with tailored privileges.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- Ansible 2.18.2 or later
+- Supported platforms:
+- Ubuntu 24.04.2 LTS
 
-Role Variables
---------------
+- Python Modules:
+  - PyMySQL or mysqlclient (installed on the target host for Ansible’s MySQL modules).
+  - Install via: pip install PyMySQL or apt/yum install python3-PyMySQL.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Role Variables
 
-Dependencies
-------------
+laravel_db_name: ''
+laravel_db_user: ''
+laravel_db_host: ''
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+### encrypted
 
-Example Playbook
-----------------
+mariadb_root_password: ''
+laravel_db_password: ''
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+## Dependencies
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+## Example Playbook
 
-License
--------
+```yml
+- hosts: webserver
+  roles:
+    - mariadb
+```
 
-BSD
+## License
 
-Author Information
-------------------
+MIT
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+## Author Information
+
+Virghiu

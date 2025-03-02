@@ -6,7 +6,7 @@ This Ansible role configures a basic web server using Nginx.
 
 - Ansible 2.18.2 or later
 - Supported platforms:
-  - Ubuntu 24.04.2 LTS
+- Ubuntu 24.04.2 LTS
 
 ## Role Variables
 
