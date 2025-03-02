@@ -1,0 +1,18 @@
+---
+- name: Create database "{{ laravel_db_name }}"
+  mysql_db:
+    name: '{{ laravel_db_name }}'
+    state: present
+    login_user: root
+    login_password: '{{ mariadb_root_password }}'
+
+- name: Create user "{{ laravel_db_user }}" with privileges on "{{ laravel_db_name }}"
+  mysql_user:
+    name: '{{ laravel_db_user }}'
+    password: '{{ laravel_db_password }}'
+    priv: '{{ laravel_db_name }}.*:ALL'
+    state: present
+    login_user: root
+    login_password: '{{ mariadb_root_password }}'
+    column_case_sensitive: false
+  notify: flush privileges

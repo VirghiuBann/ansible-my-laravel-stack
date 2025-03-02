@@ -11,5 +11,5 @@
   include_tasks: install.yml
 - name: Include secure Installation tasks
   include_tasks: secure.yml
-# - name: Include user creation tasks
-#   include_tasks: users.yml
+- name: Include user creation tasks
+  include_tasks: user.yml

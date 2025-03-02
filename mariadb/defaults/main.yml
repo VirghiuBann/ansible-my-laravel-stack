@@ -1,8 +1,4 @@
 ---
-# MariaDB version and configuration
-mariadb_version: '10.11' # Default version for Ubuntu 24.04
-mariadb_bind_address: '127.0.0.1' # Only allow local connections by default
-
 # Database settings for Laravel
 laravel_db_name: 'laravel_db'
 laravel_db_user: 'laravel'
