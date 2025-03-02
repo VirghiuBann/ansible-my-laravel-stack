@@ -4,6 +4,6 @@ laravel_db_name: 'laravel_db'
 laravel_db_user: 'laravel'
 laravel_db_host: 'localhost'
 
-# These will be overridden by vault variables
+# These will be overridden by vault variables. For test: 'root', 'laravel'
 mariadb_root_password: ''
 laravel_db_password: ''
