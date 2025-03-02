@@ -1,3 +1,13 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# defaults file for mariadb
+# MariaDB version and configuration
+mariadb_version: '10.11' # Default version for Ubuntu 24.04
+mariadb_bind_address: '127.0.0.1' # Only allow local connections by default
+
+# Database settings for Laravel
+laravel_db_name: 'laravel_db'
+laravel_db_user: 'laravel'
+laravel_db_host: 'localhost'
+
+# These will be overridden by vault variables
+mariadb_root_password: ''
+laravel_db_password: ''

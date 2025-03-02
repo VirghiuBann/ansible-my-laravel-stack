@@ -33,3 +33,4 @@ group_vars/*
 host_vars/*
 roles/*/files/*largefile*
 roles/*/templates/*.j2c
+**/vault.yml

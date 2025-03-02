@@ -1,3 +1,10 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# handlers file for mariadb
+- name: restart mariadb
+  service:
+    name: mariadb
+    state: restarted
+
+- name: reload mariadb
+  service:
+    name: mariadb
+    state: reloaded

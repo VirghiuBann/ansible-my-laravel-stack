@@ -1,0 +1,9 @@
+---
+- name: Secure MariaDB installation
+  mysql_secure_installation:
+    state: present
+    new_password: '{{mariadb_root_password}}'
+    remove_anonymous_user: true
+    remove_test_db: true
+    disallow_root_login_remotely: true
+    disable_unix_socket: true

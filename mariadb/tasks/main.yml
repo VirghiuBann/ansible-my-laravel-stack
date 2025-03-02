@@ -1,3 +1,16 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# tasks file for mariadb
+- name: Include vault variables
+  include_vars: '{{item}}'
+  with_first_found:
+    - 'vault.yml'
+    - 'vault/mariadb.yml'
+  no_log: true
+  ignore_errors: true
+
+- name: Include Installation tasks
+  include_tasks: install.yml
+# - name: Include secure Installation tasks
+#   include_tasks: secure.yml
+
+# - name: Include user creation tasks
+#   include_tasks: users.yml
