@@ -1,3 +1,18 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# tasks file for nginx
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Copy the Nginx configuration file
+  template:
+    src: templates/nginx_default.conf.j2
+    dest: '/etc/nginx/sites-available/{{domain_name}}'
+
+- name: Enable Nginx site configuration
+  file:
+    dest: '/etc/nginx/sites-enabled/{{domain_name}}'
+    src: '/etc/nginx/sites-available/{{domain_name}}'
+    state: link
+  notify: restart nginx
