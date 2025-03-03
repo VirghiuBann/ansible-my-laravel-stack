@@ -1,38 +1,44 @@
-Role Name
-=========
+# Role Name
 
-A brief description of the role goes here.
+This Ansible role installs a specified version of PHP along with a set of commonly used PHP modules on Debian-based systems (e.g., Ubuntu, Debian). It uses the apt package manager to ensure PHP and its extensions are installed, making it ideal for setting up web application environments or development servers.
 
-Requirements
-------------
+Key features:
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Installs a configurable PHP version (e.g., 7.4, 8.1, 8.2).
+Includes essential PHP modules like fpm, mysql, gd, curl, and more.
+Ensures idempotency and supports dry-run testing with --check.
 
-Role Variables
---------------
+## Requirements
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Ansible: Version 2.9 or higher.
+Target System: Debian-based OS (Ubuntu or Debian) with apt package manager.
+Privileges: Tasks require become: yes (sudo) to install packages.
+PHP Repository: A repository supporting the desired PHP version (e.g., ppa:ondrej/php for Ubuntu) must be available or configured separately.
 
-Dependencies
-------------
+## Role Variables
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Variables are defined in defaults/main.yml:
 
-Example Playbook
-----------------
+## |Variable| Description| Default Value| Example|
+
+|{{php_version}} |The PHP version to install| "8.1"| "7.4", "8.2"|
+
+## Dependencies
+
+None. This role is self-contained.
+
+## Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - php
 
-License
--------
+## License
 
-BSD
+MIT
 
-Author Information
-------------------
+## Author Information
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+virghiu

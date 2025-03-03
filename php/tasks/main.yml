@@ -1,3 +1,26 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# tasks file for php83
+- name: Add PHP PPA repository
+  apt_repository:
+    repo: 'ppa:ondrej/php'
+    state: present
+    update_cache: yes
+
+- name: Install php "{{php_version}}"
+  apt:
+    name: 'php{{php_version}}'
+    state: present
+
+- name: Install php modules
+  apt:
+    name:
+      - 'php{{php_version}}-fpm'
+      - 'php{{php_version}}-mysql'
+      - 'php{{php_version}}-gd'
+      - 'php{{php_version}}-curl'
+      - 'php{{php_version}}-mbstring'
+      - 'php{{php_version}}-xml'
+      - 'php{{php_version}}-zip'
+      - 'php{{php_version}}-bcmath'
+      - 'php{{php_version}}-opcache'
+      - 'php{{php_version}}-redis'
+    state: present
