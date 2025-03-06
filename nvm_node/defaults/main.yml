@@ -1,5 +1,12 @@
 ---
+# Default user for NVM and Node.js setup
+nvm_user: 'odin25'
+
+# NVM version to install (check https://github.com/nvm-sh/nvm/releases for latest)
 nvm_version: 'v0.40.1'
-node_version: '22'
-user_shell: 'zsh' #bash
-ansible_user: 'odin25'
+
+# Default Node.js version to install
+node_version: 'lts/*'
+
+# NVM installation URL
+nvm_install_url: 'https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh'

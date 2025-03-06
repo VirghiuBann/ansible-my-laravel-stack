@@ -4,6 +4,7 @@
   roles:
     - essential_packages
     - zsh_setup
+    - nvm_node
     - nginx
     - mariadb
     - php
