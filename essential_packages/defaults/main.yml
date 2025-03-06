@@ -1,0 +1,14 @@
+---
+essential_packages:
+  - curl
+  - git
+  - htop
+  - vim
+  - unzip
+  - curl
+  - zip
+
+zsh_config_file: '{{ansible_env.HOME}}/.zshrc'
+zsh_plugins:
+  - name: zsh-users/zsh-autosuggestions
+  - name: zsh-users/zsh-syntax-highlighting

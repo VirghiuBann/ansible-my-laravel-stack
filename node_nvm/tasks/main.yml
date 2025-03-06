@@ -1,3 +1,30 @@
-#SPDX-License-Identifier: MIT-0
 ---
-# tasks file for node_nvm
+- name: Check if NVM is already installed
+  stat:
+    path: '/home/{{ansible_user}}/.nvm/nvm.sh'
+  register: nvm_installed
+
+- name: Download and Install NVM
+  shell: |
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+  args:
+    creates: '/home/{{ansible_user}}/.nvm/nvm.sh'
+  when: not nvm_installed.stat.exists
+
+- name: Add NVM to .bashrc or .zshrc
+  lineinfile:
+    path: '/home/{{ansible_user}}/.zshrc'
+    line: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    insertafter: EOF
+    create: yes
+
+- name: Install Node.js version {{ node_nvm_version }}
+  shell: |
+    source /home/{{ansible_user}}/.zshrc
+    nvm install {{ node_version }}
+  args:
+    executable: /bin/zsh
+  when: not nvm_installed.stat.exists

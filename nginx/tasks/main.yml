@@ -4,11 +4,13 @@
     name: nginx
     state: present
     update_cache: yes
+  become: true
 
 - name: Copy the Nginx configuration file
   template:
     src: templates/nginx_default.conf.j2
     dest: '/etc/nginx/sites-available/{{domain_name}}'
+  become: true
 
 - name: Enable Nginx site configuration
   file:
@@ -16,3 +18,4 @@
     src: '/etc/nginx/sites-available/{{domain_name}}'
     state: link
   notify: restart nginx
+  become: true

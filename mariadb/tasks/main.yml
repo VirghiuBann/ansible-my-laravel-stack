@@ -2,8 +2,7 @@
 - name: Include vault variables
   include_vars: '{{item}}'
   with_first_found:
-    - 'vault.yml'
-    - 'vault/mariadb.yml'
+    - 'vars/vault.yml'
   no_log: true
   ignore_errors: true
 

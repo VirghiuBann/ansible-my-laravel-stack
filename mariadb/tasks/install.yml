@@ -6,9 +6,11 @@
       - python3-pymysql
     state: present
     update_cache: yes
+  become: true
 
 - name: Ensure MariaDB is started and enabled
   service:
     name: mariadb
     state: started
     enabled: yes
+  become: true

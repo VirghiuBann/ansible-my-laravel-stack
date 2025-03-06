@@ -1,0 +1,19 @@
+# Path to Oh My Zsh installation
+export ZSH="{{ ansible_env.HOME }}/.oh-my-zsh"
+
+# Plugins (dynamically generated from zsh_plugins)
+plugins=(
+  git
+{% for plugin in zsh_plugins %}
+  {{ plugin.name.split('/')[-1] }}
+{% endfor %}
+)
+
+# Source Oh My Zsh
+source $ZSH/oh-my-zsh.sh
+
+# User-specific configuration
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
+
+# Aliases (customize as needed)
+alias ll="ls -la"

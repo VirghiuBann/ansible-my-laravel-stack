@@ -1,8 +1,8 @@
 - name: Install Nginx
   hosts: webserver
-  become: yes
 
   roles:
+    - essential_packages
     - nginx
     - mariadb
     - php
