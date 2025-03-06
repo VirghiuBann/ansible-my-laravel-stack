@@ -7,8 +7,3 @@ essential_packages:
   - unzip
   - curl
   - zip
-
-zsh_config_file: '{{ansible_env.HOME}}/.zshrc'
-zsh_plugins:
-  - name: zsh-users/zsh-autosuggestions
-  - name: zsh-users/zsh-syntax-highlighting

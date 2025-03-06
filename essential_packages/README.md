@@ -1,38 +1,45 @@
-Role Name
-=========
+# Role Name
 
-A brief description of the role goes here.
+This Ansible role installs a set of essential packages on Debian/Ubuntu-based systems, specifically tailored for Ubuntu servers. It ensures that commonly used tools and utilities are available for system administration and development tasks.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ansible: Version 2.18.2 or higher
+Target System: Ubuntu (all versions supported)
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+The role uses the following default variables, which can be overridden in your playbook or inventory:
 
-Dependencies
-------------
+```shell
+# defaults/main.yml
+essential_packages:
+ - curl
+ - git
+ - htop
+ - vim
+ - unzip
+ - zip
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+```
 
-Example Playbook
-----------------
+## Dependencies
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+This role has no external dependencies.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+## Example Playbook
 
-License
--------
+```shell
+- hosts: all
+  become: true  # Required to install packages
+  roles:
+    - role: essential_packages
+```
 
-BSD
+## License
 
-Author Information
-------------------
+MIT
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+## Author Information
+
+Virghiu
