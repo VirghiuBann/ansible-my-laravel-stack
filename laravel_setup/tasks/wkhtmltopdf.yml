@@ -1,0 +1,62 @@
+- name: Ensure wkhtmltopdf dependencies are installed
+  apt:
+    name:
+      - fontconfig
+      - libxrender1
+      - xfonts-75dpi
+      - xfonts-base
+    state: present
+  become: true
+
+- name: Check if wkhtmltopdf is already installed
+  stat:
+    path: /usr/local/bin/wkhtmltopdf
+  register: wkhtmltopdf_installed
+  become: true
+
+- name: Check if wkhtmltoimage is already installed
+  stat:
+    path: /usr/local/bin/wkhtmltoimage
+  register: wkhtmltoimage_installed
+  become: true
+
+- name: Download wkhtmltopdf .deb package
+  get_url:
+    url: '{{ wkhtmltopdf_url }}'
+    dest: '{{ wkhtmltopdf_deb }}'
+    mode: '0644'
+  become: true
+  when: not wkhtmltopdf_installed.stat.exists or not wkhtmltoimage_installed.stat.exists
+
+- name: Set execute permissions for wkhtmltopdf .deb package
+  file:
+    path: '{{ wkhtmltopdf_deb }}'
+    mode: '0755'
+  become: true
+  when: not wkhtmltopdf_installed.stat.exists or not wkhtmltoimage_installed.stat.exists
+
+- name: Install wkhtmltopdf from .deb package
+  command:
+    cmd: dpkg -i {{ wkhtmltopdf_deb }}
+    creates: /usr/local/bin/wkhtmltopdf-amd64
+  become: true
+  when: not wkhtmltopdf_installed.stat.exists or not wkhtmltoimage_installed.stat.exists
+
+- name: Remove wkhtmltopdf .deb package
+  file:
+    path: '{{ wkhtmltopdf_deb }}'
+    state: absent
+  become: true
+  when: not wkhtmltopdf_installed.stat.exists or not wkhtmltoimage_installed.stat.exists
+
+- name: Set executable permissions for wkhtmltopdf
+  file:
+    path: /usr/local/bin/wkhtmltopdf
+    mode: '0755'
+  become: true
+
+- name: Set executable permissions for wkhtmltoimage
+  file:
+    path: /usr/local/bin/wkhtmltoimage
+    mode: '0755'
+  become: true

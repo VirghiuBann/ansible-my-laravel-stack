@@ -9,3 +9,4 @@
     - mariadb
     - php
     - docker
+    - laravel_setup

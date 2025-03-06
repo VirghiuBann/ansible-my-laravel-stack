@@ -1,0 +1,4 @@
+---
+laravel_user: 'odin25' # User to install Laravel for
+wkhtmltopdf_url: 'https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb' # Download URL
+wkhtmltopdf_deb: '/tmp/wkhtmltox_0.12.6.1-2.jammy_amd64.deb' #

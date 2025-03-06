@@ -1,0 +1,44 @@
+---
+- name: Ensure curl is installed
+  apt:
+    name: curl
+    state: present
+  become: true
+
+- name: Ensure user exists
+  user:
+    name: '{{ laravel_user }}'
+    state: present
+  become: true
+
+- name: Install Composer globally
+  shell: |
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+  args:
+    creates: /usr/local/bin/composer
+    executable: /bin/bash
+  become: true
+
+- name: Set Composer executable permissions
+  file:
+    path: /usr/local/bin/composer
+    mode: '0755'
+  become: true
+
+- name: Install Laravel Installer globally
+  command:
+    cmd: composer global require laravel/installer
+    creates: '/home/{{ laravel_user }}/.composer/vendor/laravel/installer'
+  become: true
+  become_user: '{{ laravel_user }}'
+  environment:
+    COMPOSER_HOME: '/home/{{ laravel_user }}/.composer'
+
+- name: Ensure Composer global bin is in PATH
+  lineinfile:
+    path: '/home/{{ laravel_user }}/.zshrc'
+    line: 'export PATH="$HOME/.composer/vendor/bin:$PATH"'
+    state: present
+    create: yes
+  become: true
+  become_user: '{{ laravel_user }}'

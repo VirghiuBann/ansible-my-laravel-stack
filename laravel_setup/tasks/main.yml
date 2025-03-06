@@ -1,0 +1,6 @@
+---
+- name: Include laravel tasks
+  include_tasks: laravel.yml
+
+- name: Include install wkhtmltopdf tasks
+  include_tasks: wkhtmltopdf.yml
