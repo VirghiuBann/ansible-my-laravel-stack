@@ -1,0 +1,6 @@
+---
+# Default user for zsh and oh-my-zsh setup
+zsh_user: 'odin25'
+
+# URL for oh-my-zsh installation script
+oh_my_zsh_install_url: 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh'

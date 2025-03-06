@@ -1,0 +1,36 @@
+---
+- name: Install zsh package
+  apt:
+    name: zsh
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Ensure user exists
+  user:
+    name: '{{ zsh_user }}'
+    state: present
+  become: true
+
+- name: Set zsh as default shell for user
+  user:
+    name: '{{ zsh_user }}'
+    shell: /bin/zsh
+  become: true
+
+- name: Check if oh-my-zsh is already installed for user
+  stat:
+    path: '/home/{{ zsh_user }}/.oh-my-zsh'
+  register: oh_my_zsh_dir
+  become: true
+  become_user: '{{ zsh_user }}'
+
+- name: Install oh-my-zsh for user
+  shell: |
+    curl -fsSL {{ oh_my_zsh_install_url }} | sh
+  args:
+    creates: '/home/{{ zsh_user }}/.oh-my-zsh'
+    executable: /bin/sh
+  become: true
+  become_user: '{{ zsh_user }}'
+  when: not oh_my_zsh_dir.stat.exists

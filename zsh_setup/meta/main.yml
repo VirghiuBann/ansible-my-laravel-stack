@@ -1,0 +1,21 @@
+galaxy_info:
+  author: virghiu
+  description: Installs zsh and oh-my-zsh for a specified user on Ubuntu systems
+  company: compuCenter
+
+  license: MIT
+
+  min_ansible_version: '2.18.2'
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - zsh
+    - ohmyzsh
+    - shell
+    - ubuntu
+
+dependencies: []

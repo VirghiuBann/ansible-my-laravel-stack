@@ -3,6 +3,7 @@
 
   roles:
     - essential_packages
+    - zsh_setup
     - nginx
     - mariadb
     - php
