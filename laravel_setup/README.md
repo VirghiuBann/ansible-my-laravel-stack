@@ -1,38 +1,18 @@
-Role Name
-=========
+# Laravel Setup Ansible Role
 
-A brief description of the role goes here.
+This Ansible role installs Composer, sets up the Laravel Installer globally, creates a new Laravel application using `laravel new example-app`, and manually installs `wkhtmltopdf` from a specific .deb package on an Ubuntu server. It assumes PHP and required extensions are already installed.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- **Ansible**: Version 2.18.2 or higher
+- **Target System**: Ubuntu (all versions, tested with Jammy for wkhtmltopdf)
+- **Pre-installed**: PHP and required extensions (e.g., mbstring, xml, zip)
+- **Privileges**: Requires `become: true`
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+```yaml
+laravel_user: 'odin'
+wkhtmltopdf_url: 'https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb' # wkhtmltopdf download URL
+wkhtmltopdf_deb: '/tmp/wkhtmltox_0.12.6.1-2.jammy_amd64.deb' # Temporary .deb file location
+```
