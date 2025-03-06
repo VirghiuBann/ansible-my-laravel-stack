@@ -1,38 +1,45 @@
-Role Name
-=========
+# NVM Node Ansible Role
 
-A brief description of the role goes here.
+This Ansible role installs Node Version Manager (NVM) and a specified version of Node.js for a user on Ubuntu-based systems. It ensures NVM is configured and Node.js is ready for use.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- **Ansible**: Version 2.18.2 or higher
+- **Target System**: Ubuntu (all versions supported)
+- **Privileges**: Tasks require `become: true` for package installation and user modification
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+The role uses the following default variables, which can be overridden:
 
-Dependencies
-------------
+```yaml
+# defaults/main.yml
+nvm_user: 'odin' # The user to configure NVM and Node.js for
+nvm_version: 'v0.40.1' # NVM version to install
+node_version: '20.17.0' # Node.js version to install
+nvm_install_url: 'https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh'
+```
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+## Dependencies
 
-Example Playbook
-----------------
+This role has no external dependencies but requires curl (installed by the role).
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+## Example Playbook
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+Install NVM and Node.js for the default user (odin):
 
-License
--------
+```yml
+---
+- hosts: all
+  become: true
+  roles:
+    - role: nvm_node
+```
 
-BSD
+## License
 
-Author Information
-------------------
+MIT
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+## Author Information
+
+virghiu
