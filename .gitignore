@@ -6,6 +6,7 @@
 *.jks
 *.password
 *.secrets
+*.env
 vars/vault.yml
 
 # Temporary Files
