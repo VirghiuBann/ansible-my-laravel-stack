@@ -6,12 +6,6 @@
     update_cache: yes
   become: true
 
-- name: Install php "{{php_version}}"
-  apt:
-    name: 'php{{php_version}}'
-    state: present
-  become: true
-
 - name: Install php modules
   apt:
     name:
@@ -25,5 +19,7 @@
       - 'php{{php_version}}-bcmath'
       - 'php{{php_version}}-opcache'
       - 'php{{php_version}}-redis'
+      - 'php{{php_version}}-tokenizer'
+      - 'php{{php_version}}-intl'
     state: present
   become: true
