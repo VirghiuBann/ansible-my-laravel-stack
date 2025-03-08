@@ -14,7 +14,7 @@ The role uses the following default variables, which can be overridden:
 
 ```yml
 # defaults/main.yml
-zsh_user: 'odin' # The user to configure zsh and oh-my-zsh for
+host_user: '' # The user to configure zsh and oh-my-zsh for
 oh_my_zsh_install_url: 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
 ```
 
