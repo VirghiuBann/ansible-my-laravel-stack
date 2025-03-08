@@ -11,7 +11,3 @@ This Ansible role installs Docker, configures the Docker group for a specified u
 ## Role Variables
 
 Default variables are defined in `defaults/main.yml`:
-
-```yaml
-docker_user: 'odin' # User to manage Docker and run
-```

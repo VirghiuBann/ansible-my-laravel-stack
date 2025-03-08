@@ -1,4 +1,10 @@
 ---
+- name: Ensure docker is installed
+  become: true
+  command: docker --version
+  ignore_errors: true
+  register: docker_installed
+
 - name: Update apt cache
   become: true
   apt:
@@ -16,6 +22,7 @@
     path: /etc/apt/keyrings
     state: directory
     mode: '0755'
+  when: docker_installed.rc != 0
 
 - name: Download Docker GPG key
   become: true
@@ -23,12 +30,14 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/keyrings/docker.asc
     mode: '0644'
+  when: docker_installed.rc != 0
 
 - name: Set permissions for Docker GPG key
   become: true
   file:
     path: /etc/apt/keyrings/docker.asc
     mode: '0644'
+  when: docker_installed.rc != 0
 
 - name: Add Docker repository to sources
   become: true
@@ -37,11 +46,13 @@
       "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
       $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
       tee /etc/apt/sources.list.d/docker.list > /dev/null
+  when: docker_installed.rc != 0
 
 - name: Update apt cache (again)
   become: true
   apt:
     update_cache: true
+  when: docker_installed.rc != 0
 
 - name: Install Docker CE and related packages
   become: true
@@ -65,6 +76,6 @@
 - name: Add user to docker group
   become: true
   user:
-    name: '{{ ansible_user }}'
+    name: '{{ host_user }}'
     groups: docker
     append: true

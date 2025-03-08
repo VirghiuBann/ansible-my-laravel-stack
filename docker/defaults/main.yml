@@ -1,2 +1,2 @@
 ---
-ansible_user: 'odin25'
+host_user: ''
