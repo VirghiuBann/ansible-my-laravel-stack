@@ -1,6 +1,6 @@
 ---
 # Default user for NVM and Node.js setup
-nvm_user: 'odin25'
+host_user: ''
 
 # NVM version to install (check https://github.com/nvm-sh/nvm/releases for latest)
 nvm_version: 'v0.40.1'
