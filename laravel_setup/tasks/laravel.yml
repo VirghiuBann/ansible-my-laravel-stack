@@ -7,7 +7,7 @@
 
 - name: Ensure user exists
   user:
-    name: '{{ laravel_user }}'
+    name: '{{ host_user }}'
     state: present
   become: true
 
@@ -28,17 +28,17 @@
 - name: Install Laravel Installer globally
   command:
     cmd: composer global require laravel/installer
-    creates: '/home/{{ laravel_user }}/.composer/vendor/laravel/installer'
+    creates: '/home/{{ host_user }}/.composer/vendor/laravel/installer'
   become: true
-  become_user: '{{ laravel_user }}'
+  become_user: '{{ host_user }}'
   environment:
-    COMPOSER_HOME: '/home/{{ laravel_user }}/.composer'
+    COMPOSER_HOME: '/home/{{ host_user }}/.composer'
 
 - name: Ensure Composer global bin is in PATH
   lineinfile:
-    path: '/home/{{ laravel_user }}/.zshrc'
+    path: '/home/{{ host_user }}/.zshrc'
     line: 'export PATH="$HOME/.composer/vendor/bin:$PATH"'
     state: present
     create: yes
   become: true
-  become_user: '{{ laravel_user }}'
+  become_user: '{{ host_user }}'
