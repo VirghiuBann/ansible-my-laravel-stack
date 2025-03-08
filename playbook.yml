@@ -1,6 +1,7 @@
-- name: Install Nginx
+- name: Install laravel stack
   hosts: webserver
-
+  vars_files:
+    - vars/webserver.yml
   roles:
     - essential_packages
     - zsh_setup
