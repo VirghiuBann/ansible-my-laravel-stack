@@ -1,8 +1,7 @@
 ---
-# Database settings for Laravel
-laravel_db_name: 'laravel_db'
-laravel_db_user: 'laravel'
-laravel_db_host: 'localhost'
+# Database settings for Laravel for test 'laravel_db', 'laravel'
+laravel_db_name: ''
+laravel_db_user: ''
 
 # These will be overridden by vault variables. For test: 'root', 'laravel'
 mariadb_root_password: ''
