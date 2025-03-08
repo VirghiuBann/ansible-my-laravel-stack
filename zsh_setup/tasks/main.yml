@@ -34,3 +34,29 @@
   become: true
   become_user: '{{ host_user }}'
   when: not oh_my_zsh_dir.stat.exists
+
+- name: Clone zsh-autosuggestions plugin
+  git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: '/home/{{ host_user }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
+    depth: 1
+  become: true
+  become_user: '{{ host_user }}'
+
+- name: Clone zsh-syntax-highlighting plugin
+  git:
+    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+    dest: '/home/{{ host_user }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting'
+    depth: 1
+  become: true
+  become_user: '{{ host_user }}'
+
+- name: Ensure plugins are added to .zshrc
+  lineinfile:
+    path: '/home/{{ host_user }}/.zshrc'
+    regex: '^plugins=\('
+    line: 'plugins=(git zsh-autosuggestions zsh-syntax-highlighting)'
+    state: present
+    create: yes
+  become: true
+  become_user: '{{ host_user }}'
