@@ -7,3 +7,4 @@ essential_packages:
   - unzip
   - curl
   - zip
+  - bzip2
