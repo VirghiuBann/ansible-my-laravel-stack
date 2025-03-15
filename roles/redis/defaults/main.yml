@@ -1,0 +1,8 @@
+---
+# Default Redis configuration values
+# These will be overwritten by private protected variables in production
+redis_bind_address: '127.0.0.1' # Overwritten by protected vars
+redis_port: 6379 # Overwritten by protected vars
+redis_protected_mode: 'yes' # Overwritten by protected vars
+redis_appendonly: 'no' # Overwritten by protected vars
+redis_save: '' # Overwritten by protected vars

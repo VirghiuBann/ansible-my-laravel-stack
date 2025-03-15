@@ -1,0 +1,21 @@
+#SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: virghiu
+  description: Install and configure Redis on an Ubuntu server.
+  company: compuCenter
+  license: MIT
+
+  min_ansible_version: '2.18.2'
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - redis
+    - webserver
+    - development
+    - ubuntu
+
+dependencies: []

@@ -1,0 +1,10 @@
+bind {{ redis_bind_address }}
+protected-mode {{ redis_protected_mode }}
+port {{ redis_port }}
+
+# Disable persistence (optional)
+save {{ redis_save }}
+appendonly {{ redis_appendonly }}
+
+# Require authentication (uncomment if using password)
+# requirepass {{ redis_password | default('') }}
